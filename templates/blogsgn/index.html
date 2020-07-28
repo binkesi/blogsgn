@@ -1,0 +1,9 @@
+{% if article_list %}
+    <ul>
+    {% for article in article_list %}
+        <p>{{ article.name }}</p>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No articles are available.</p>
+{% endif %}
