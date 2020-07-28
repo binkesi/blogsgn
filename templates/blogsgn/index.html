@@ -1,7 +1,8 @@
 {% if article_list %}
     <ul>
     {% for article in article_list %}
-        <p>{{ article.name }}</p>
+        <p>{{ article.name }}  "author:" {{ article.author }} {{ article.author.nation }}</p>
+        <p>{{ article.pub_date }}</p>
     {% endfor %}
     </ul>
 {% else %}
