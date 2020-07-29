@@ -1,8 +1,9 @@
-{% if article_list %}
+{% if entry_list %}
     <ul>
-    {% for article in article_list %}
-        <p>{{ article.name }}  "author:" {{ article.author }} {{ article.author.nation }}</p>
-        <p>{{ article.pub_date }}</p>
+    {% for entry in entry_list %}
+        <li><a href="/blogsgn/{{ entry.id }}/">{{ entry.title }}</a></li>
+        <p>"author:" {{ entry.author }} {{ entry.author.nation }}</p>
+        <p>{{ entry.pub_date }}</p>
     {% endfor %}
     </ul>
 {% else %}

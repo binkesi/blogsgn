@@ -8,10 +8,11 @@ class Author(models.Model):
         return self.name
 
 # Create your models here.
-class EntryArticle(models.Model):
-    name = models.CharField(max_length=80, unique=True, verbose_name='Article name')
+class Article(models.Model):
+    title = models.CharField(max_length=80, unique=True, verbose_name='Article name')
     pub_date = models.DateTimeField('date published')
     author = models.ForeignKey(Author, null=True, on_delete=models.CASCADE)
+    context = models.TextField()
     
     def __str__(self):
-        return self.name
+        return self.title   
