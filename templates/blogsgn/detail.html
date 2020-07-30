@@ -1,8 +1,8 @@
 <h1>{{ article.title }}</h1>
 <p>{{ article.author.name }}</p>
 <p>{{ article.context }}</p>
-{% for comment in artilce.comments_set.all %}
-    <p>{{ comment.context }}</p>
+{% for comment in article.comments_set.all %}
+    <p>{{ comment.body }}</p>
 {% endfor %}
 
 <form method="post" style="margin-top: 1.3em;">

@@ -19,7 +19,7 @@ class ArticleView(generic.DetailView):
     
 def get_comment(request, pk):
     template_name = 'blogsgn/detail.html'
-    context_object_name = 'article'
+    #context_object_name = 'article'
     article = get_object_or_404(Article, pk=pk)
     comments = article.comments_set.filter(active=True)
     new_comment = None

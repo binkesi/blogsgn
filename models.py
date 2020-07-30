@@ -35,4 +35,4 @@ class Comments(models.Model):
 class CommentsForm(ModelForm):
     class Meta:
         model = Comments
-        fields = ['name', 'body']
+        fields = ['name', 'body', 'active']
