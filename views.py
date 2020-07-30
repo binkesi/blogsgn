@@ -34,6 +34,7 @@ def get_comment(request, pk):
             new_comment.article = article
             # Save the comment to the database
             new_comment.save()
+            comment_form = CommentsForm()
     else:
         comment_form = CommentsForm()
 
