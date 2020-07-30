@@ -36,3 +36,8 @@ class CommentsForm(ModelForm):
     class Meta:
         model = Comments
         fields = ['name', 'body', 'active']
+        
+class ArticleForm(ModelForm):
+    class Meta:
+        model = Article
+        fields = '__all__'

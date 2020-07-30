@@ -1,0 +1,5 @@
+<form method="post" style="margin-top: 1.3em;">
+  {{ new_article_form.as_p }}
+  {% csrf_token %}
+  <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+</form>
