@@ -3,9 +3,18 @@ from django.forms import ModelForm
 from django.utils import timezone
 
 class Author(models.Model):
-    name = models.CharField(max_length=80, unique=True, verbose_name='Author name')
+    name = models.CharField(max_length=80, unique=False, verbose_name='Author name')
     nation = models.CharField(max_length=80, unique=False, verbose_name='Nationality')
     
+    def save(self, *args, **kwargs):
+        try:
+            old_author = Author.objects.get(name=self.name)
+        except Author.DoesNotExist:
+            super().save(*args, **kwargs)
+            return self        
+        else:
+            return old_author
+            
     def __str__(self):
         return self.name
 
@@ -36,8 +45,13 @@ class CommentsForm(ModelForm):
     class Meta:
         model = Comments
         fields = ['name', 'body', 'active']
+
+class AuthorForm(ModelForm):        
+    class Meta:
+        model = Author
+        fields = '__all__'
         
 class ArticleForm(ModelForm):
     class Meta:
         model = Article
-        fields = '__all__'
+        fields = ['title', 'pub_date', 'context']

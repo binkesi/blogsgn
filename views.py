@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import generic
-from .models import Article, Comments, CommentsForm, ArticleForm
+from .models import Article, Comments, Author, CommentsForm, ArticleForm, AuthorForm
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -48,12 +48,18 @@ def get_comment(request, pk):
 def new_article(request):
     template_name = 'blogsgn/new.html'
     new_article_form = None
+    new_author_form = None
     if request.method == 'POST':
         new_article_form = ArticleForm(data=request.POST)
+        author_form = AuthorForm(data=request.POST)           
         if new_article_form.is_valid():
-            article = new_article_form.save()
+            article = new_article_form.save(commit=False)
+            new_author = author_form.save(commit=False)
+            article.author = new_author.save()
+            article.save()
         return HttpResponseRedirect(reverse('blogsgn:detail', args=(article.id,)))
             
     else:
         new_article_form = ArticleForm()
-        return render(request, template_name, {'new_article_form': new_article_form})
+        new_author_form = AuthorForm()
+        return render(request, template_name, {'new_article_form': new_article_form, 'new_author_form': new_author_form})
