@@ -3,8 +3,15 @@ from django.forms import ModelForm
 from django.utils import timezone
 
 class Author(models.Model):
+    NATION_CHOICES = (
+        ('CH', 'China'),
+        ('US', 'America'),
+        ('UK', 'England'),
+        ('GE', 'German'),
+        ('CA', 'Canada'),
+    )
     name = models.CharField(max_length=80, unique=False, verbose_name='Author name')
-    nation = models.CharField(max_length=80, unique=False, verbose_name='Nationality')
+    nation = models.CharField(max_length=80, unique=False, verbose_name='Nationality', choices=NATION_CHOICES)
     
     def save(self, *args, **kwargs):
         try:
