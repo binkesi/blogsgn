@@ -4,6 +4,8 @@ from .models import Article, Comments, Author, CommentsForm, ArticleForm, Author
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from django.db.models import Q, F
+from datetime import date, timedelta
 
 # Create your views here.
 class IndexView(generic.ListView):
@@ -11,7 +13,7 @@ class IndexView(generic.ListView):
     context_object_name = 'entry_list'
     
     def get_queryset(self):
-        return Article.objects.order_by('-pub_date')[:5]
+        return Article.objects.filter(Q(author__nation='China')|Q(pub_date__gte=date(2010, 5, 7)))
         
         
 #class ArticleView(generic.DetailView):
