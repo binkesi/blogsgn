@@ -4,6 +4,7 @@ from django.utils import timezone
 
 class Author(models.Model):
     NATION_CHOICES = (
+        (None, 'Nationality'),
         ('CH', 'China'),
         ('US', 'America'),
         ('UK', 'England'),
